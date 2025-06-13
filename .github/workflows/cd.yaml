@@ -24,3 +24,15 @@ jobs:
             npm install
             npm run migrate up
             pm2 restart auth-api
+            - name: Kirim notifikasi ke Telegram
+              run: |
+                curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
+                -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
+                -d parse_mode=Markdown \
+                -d text="🚀 *Deploy Berhasil!*
+                
+                  🧑‍💻 Oleh: [${{ github.actor }}](https://github.com/${{ github.actor }})
+                  🔀 Branch: \`${{ github.ref_name }}\`
+                  📝 Commit: [${{ github.event.head_commit.message }}](${{ github.event.head_commit.url }})
+
+                  🎯 Repository: [${{ github.repository }}](https://github.com/${{ github.repository }})"
