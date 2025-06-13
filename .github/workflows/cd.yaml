@@ -20,6 +20,6 @@ jobs:
           script: |
             cd ~/dicoding-auth-api
             git pull origin main
-            npm install
-            npm run migrate up
-            pm2 restart auth-api
+            /home/ubuntu/.nvm/versions/node/v22.16.0/bin/npm install
+            /home/ubuntu/.nvm/versions/node/v22.16.0/bin/npm run migrate up
+            /home/ubuntu/.nvm/versions/node/v22.16.0/bin/pm2 restart auth-api
